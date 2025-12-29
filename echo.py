@@ -1,18 +1,31 @@
-# echo.py
+# ...existing code...
 import re
-from password import is_valid_password
+
+
+def is_valid_password(pw: str) -> bool:
+    """비밀번호 검사: 6자 이상, 알파벳/숫자/특수문자 각각 1개 이상"""
+    if len(pw) < 6:
+        return False
+    if not re.search(r"[A-Za-z]", pw):
+        return False
+    if not re.search(r"\d", pw):
+        return False
+    if not re.search(r"[^A-Za-z0-9]", pw):
+        return False
+    return True
+
 
 def main():
     print("echo 프로그램입니다.")
     print("- 문장을 입력하면 그대로 출력합니다.")
-    print("- 종료: !quit")
+    print("- 종료: !exit")
     print("- 비밀번호 검사: !pw <비밀번호>  (예: !pw Abc!123)")
     print()
 
     while True:
         s = input("> ").rstrip("\n")
 
-        if s == "!quit":
+        if s == "!exit":
             print("프로그램을 종료합니다.")
             break
 
@@ -27,5 +40,7 @@ def main():
 
         print(s)
 
+
 if __name__ == "__main__":
     main()
+# ...existing code...
